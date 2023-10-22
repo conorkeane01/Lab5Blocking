@@ -15,13 +15,14 @@ public class FeignController {
         this.feignService = feignService;
     }
 
+
     @GetMapping("/feign")
     public TodoResponse getFeignData() throws Exception, InterruptedException {
         long startTime = System.currentTimeMillis();
 
         List< CompletableFuture<TodoResponse>> futures = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             CompletableFuture<TodoResponse> future = CompletableFuture.supplyAsync(() -> feignService.fetchData());
             futures.add(future);
         }
